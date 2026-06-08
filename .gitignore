@@ -1,0 +1,8 @@
+# interne/arbeitsdateien – nicht veröffentlichen
+.claude/
+_backup_v1/
+stitch/
+styles.css
+script.js
+*.zip
+.DS_Store

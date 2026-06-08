@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schneideratelier Giorgio · Massanzüge in Wil</title>
+<meta name="description" content="Massgeschneiderte Anzüge aus Wil. Edle Stoffe von Scabal, Wilvorst & Damat, perfekte Passform, persönliche Beratung. Konfigurieren Sie Ihren Massanzug und sichern Sie sich Ihre kostenlose Erstberatung." />
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        "sartorial-navy": "#0A192F",
+        "atelier-gold": "#C5A059",
+        "charcoal-wool": "#262626",
+        "silk-white": "#FFFFFF",
+        "heritage-red": "#B00F41",
+        "on-surface-variant": "#44474d",
+        "surface-container-low": "#f3f3f3",
+      },
+      fontFamily: {
+        display: ["Libre Caslon Text", "Georgia", "serif"],
+        body: ["Hanken Grotesk", "system-ui", "sans-serif"],
+      },
+      spacing: { "section": "120px" },
+      maxWidth: { "container": "1280px" },
+    }},
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; }
+  .font-display { font-family: "Libre Caslon Text", Georgia, serif; }
+  .label-caps { font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+  .text-stroke { -webkit-text-stroke: 1px #0A192F; color: transparent; }
+  .text-stroke-light { -webkit-text-stroke: 1px rgba(255,255,255,.5); color: transparent; }
+
+  [hidden] { display: none !important; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.6,.2,1), transform .8s cubic-bezier(.2,.6,.2,1); transition-delay: var(--d,0s); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none;transition:none} }
+
+  /* Funnel */
+  .qstep { display: none; }
+  .qstep.is-active { display: block; animation: fade .4s ease; }
+  @keyframes fade { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .optbox { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #d9d6cf; background: #fff; cursor: pointer; transition: all .18s ease; height: 100%; }
+  .optbox:hover { border-color: var(--g,#C5A059); background: #fcfaf5; }
+  .opt input:checked + .optbox { border-color: #C5A059; box-shadow: inset 0 0 0 1px #C5A059; background: #faf6ec; }
+  .opt input:focus-visible + .optbox { outline: 2px solid #C5A059; outline-offset: 2px; }
+  .swatch { width: 24px; height: 24px; flex-shrink: 0; border: 1px solid rgba(0,0,0,.15); }
+  /* Stitch border-bottom inputs */
+  .fld label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #44474d; display: block; margin-bottom: 8px; }
+  .fld input, .fld select, .fld textarea { width: 100%; border: 0; border-bottom: 1px solid #262626; background: transparent; padding: 10px 2px; font-family: inherit; font-size: 16px; color: #0A192F; transition: border-color .2s; }
+  .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-bottom-color: #C5A059; }
+  .fld input.invalid, .fld textarea.invalid { border-bottom-color: #B00F41; }
+  .mailto-link { display:block; margin-top:18px; font-size:.85rem; color:#44474d; text-decoration:underline; }
+</style>
+</head>
+
+<body class="bg-silk-white text-sartorial-navy overflow-x-hidden">
+
+<!-- ===== Topbar ===== -->
+<div class="bg-sartorial-navy text-silk-white/80 text-[12.5px]">
+  <div class="max-w-container mx-auto px-5 md:px-16 h-10 flex items-center justify-center gap-3 flex-wrap">
+    <span>Zürcherstr. 2, 9500 Wil</span><span class="opacity-40">·</span>
+    <a href="tel:+41719112511" class="hover:text-atelier-gold transition-colors">+41 71 911 25 11</a>
+    <span class="opacity-40 hidden sm:inline">·</span>
+    <span class="hidden sm:inline">Di–Fr 09–18:30 · Sa 09–17</span>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header id="header" class="sticky top-0 w-full z-50 bg-silk-white/95 border-b border-charcoal-wool/10 backdrop-blur-md transition-shadow">
+  <div class="max-w-container mx-auto px-5 md:px-16 flex justify-between items-center h-20">
+    <div class="flex items-center gap-4 flex-1">
+      <button id="burger" class="md:hidden active:scale-95 transition-transform" aria-label="Menü">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="label-caps text-atelier-gold border-b border-atelier-gold py-1" href="#handwerk">Handwerk</a>
+        <a class="label-caps hover:text-atelier-gold transition-colors py-1" href="#stoffe">Stoffe</a>
+        <a class="label-caps hover:text-atelier-gold transition-colors py-1" href="#stimmen">Stimmen</a>
+      </nav>
+    </div>
+    <a class="font-display text-2xl md:text-[28px] tracking-tight whitespace-nowrap absolute left-1/2 -translate-x-1/2" href="#top">Giorgio</a>
+    <div class="flex items-center justify-end gap-6 flex-1">
+      <a href="#konfigurator" class="hidden sm:inline-flex bg-sartorial-navy text-silk-white px-6 py-3 label-caps hover:bg-atelier-gold transition-colors active:scale-95">Termin sichern</a>
+    </div>
+  </div>
+  <div id="mobileNav" class="hidden md:hidden border-t border-charcoal-wool/10 bg-silk-white px-5 py-4 flex flex-col gap-4">
+    <a class="label-caps" href="#handwerk">Handwerk</a>
+    <a class="label-caps" href="#stoffe">Stoffe</a>
+    <a class="label-caps" href="#konfigurator">Konfigurator</a>
+    <a class="label-caps" href="#stimmen">Stimmen</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===== Hero ===== -->
+<section class="relative overflow-hidden">
+  <div class="max-w-container mx-auto px-5 md:px-16 w-full grid grid-cols-12 gap-6 relative z-10 py-16 md:py-24 items-center">
+    <div class="col-span-12 md:col-span-6 order-2 md:order-1">
+      <span class="label-caps text-atelier-gold mb-6 block">Ihr Massschneider in Wil</span>
+      <h1 class="font-display text-[44px] md:text-[68px] leading-[1.05] mb-7">
+        Ein Anzug,<br/>der <span class="italic">nur Ihnen</span><br/>gehört.
+      </h1>
+      <p class="text-lg max-w-md mb-9 text-on-surface-variant font-light leading-relaxed">
+        Massgeschneidert auf Ihren Körper, Ihren Anlass und Ihren Stil. Edle Stoffe,
+        perfekte Passform, persönliche Beratung – vom ersten Mass bis zur letzten Naht.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-9">
+        <a href="#konfigurator" class="bg-sartorial-navy text-silk-white px-9 py-4 label-caps hover:bg-atelier-gold transition-all duration-300 active:scale-95">Massanzug konfigurieren</a>
+        <a href="tel:+41719112511" class="border border-charcoal-wool/30 px-9 py-4 label-caps hover:border-atelier-gold hover:text-atelier-gold transition-colors">Anrufen</a>
+      </div>
+      <div class="flex items-center gap-3 text-sm text-on-surface-variant">
+        <span class="text-atelier-gold tracking-[2px]">★★★★★</span>
+        <span><strong class="text-sartorial-navy">5,0</strong> · 364 Google-Rezensionen</span>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-6 order-1 md:order-2 relative">
+      <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+        <img alt="Massgeschneiderter Anzug" class="w-full h-full object-cover" src="images/st-hero.jpg"/>
+        <div class="absolute inset-0 bg-sartorial-navy/10"></div>
+      </div>
+      <div class="absolute -bottom-8 -left-6 hidden lg:block w-40 h-52 border-[6px] border-silk-white shadow-2xl overflow-hidden">
+        <img alt="Massanzüge im Atelier Giorgio" class="w-full h-full object-cover" src="images/g_suits.jpg"/>
+      </div>
+    </div>
+  </div>
+  <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none -z-0">
+    <span class="font-display text-[260px] leading-none whitespace-nowrap">ATELIER</span>
+  </div>
+</section>
+
+<!-- ===== Handwerk (Navy) ===== -->
+<section id="handwerk" class="relative bg-sartorial-navy py-section overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-full opacity-[0.08] flex items-center justify-center">
+    <h2 class="text-stroke-light font-display text-[20vw] leading-none whitespace-nowrap pointer-events-none">MASS</h2>
+  </div>
+  <div class="max-w-container mx-auto px-5 md:px-16 relative z-10">
+    <div class="grid grid-cols-12 gap-6 items-center">
+      <div class="col-span-12 lg:col-span-5 text-silk-white reveal">
+        <span class="label-caps text-atelier-gold mb-7 block">Handwerk & Hingabe</span>
+        <h3 class="font-display text-4xl md:text-[44px] leading-tight mb-7">Handwerk, das man trägt – nicht von der Stange.</h3>
+        <p class="text-lg text-silk-white/70 mb-12 font-light leading-relaxed">
+          Bei uns entsteht Ihr Anzug um Sie herum – nicht umgekehrt. Persönliche
+          Beratung, exaktes Mass vor Ort und sorgfältige Verarbeitung sorgen für
+          eine Passform ohne Kompromisse.
+        </p>
+        <div class="space-y-10">
+          <div class="flex gap-7 items-start border-l border-atelier-gold/40 pl-7">
+            <span class="font-display text-3xl text-stroke-light opacity-70 italic">01</span>
+            <div><h4 class="text-xl font-semibold mb-1">Persönliche Beratung & Mass</h4><p class="text-silk-white/60">Wir nehmen vor Ort exakt Mass und beraten Sie ehrlich – nie aufdringlich.</p></div>
+          </div>
+          <div class="flex gap-7 items-start border-l border-atelier-gold/40 pl-7">
+            <span class="font-display text-3xl text-stroke-light opacity-70 italic">02</span>
+            <div><h4 class="text-xl font-semibold mb-1">Perfekte Passform</h4><p class="text-silk-white/60">Jede Naht folgt Ihren Massen – Schultern, Taille, Länge sitzen perfekt.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 mt-12 lg:mt-0 reveal" style="--d:.1s">
+        <div class="relative">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img alt="Massnahme im Atelier" class="w-full h-full object-cover" src="images/st-tailor.jpg"/>
+          </div>
+          <div class="absolute -top-8 -right-6 bg-atelier-gold w-32 h-32 flex flex-col items-center justify-center text-center rotate-6 shadow-xl">
+            <span class="font-display text-3xl text-sartorial-navy leading-none">5,0★</span>
+            <span class="label-caps text-[9px] text-sartorial-navy mt-1">364 Google<br/>Rezensionen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stoffe ===== -->
+<section id="stoffe" class="py-section bg-silk-white">
+  <div class="max-w-container mx-auto px-5 md:px-16">
+    <div class="grid grid-cols-12 gap-6 md:gap-12 items-center">
+      <div class="col-span-12 md:col-span-6 reveal">
+        <div class="relative aspect-[4/5] overflow-hidden bg-sartorial-navy">
+          <img alt="Exklusive Anzugstoffe" class="w-full h-full object-cover opacity-90" src="images/st-fabric.jpg"/>
+          <div class="absolute bottom-5 left-5 bg-sartorial-navy/85 backdrop-blur px-5 py-2.5 border border-atelier-gold/40">
+            <span class="label-caps text-silk-white text-[11px]">Scabal · Wilvorst · Damat</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-6 reveal" style="--d:.1s">
+        <span class="label-caps text-atelier-gold mb-5 block">Das Herzstück Ihres Anzugs</span>
+        <h2 class="font-display text-4xl md:text-[44px] leading-tight mb-7">Stoffe, die man sehen <span class="italic">und</span> spüren will.</h2>
+        <p class="text-lg text-on-surface-variant mb-9 font-light leading-relaxed">
+          Ein Anzug ist nur so gut wie der Stoff, aus dem er entsteht. Deshalb arbeiten
+          wir ausschliesslich mit edlen Tuchen renommierter Häuser – fein, atmungsaktiv
+          und aussergewöhnlich angenehm auf der Haut.
+        </p>
+        <ul class="space-y-5 mb-10">
+          <li class="flex gap-4"><span class="material-symbols-outlined text-atelier-gold text-xl">verified</span><span><strong class="font-semibold">Exklusive Webereien</strong> – Stoffe von Scabal, Wilvorst &amp; Damat, wie sie sonst nur Massschneider führen.</span></li>
+          <li class="flex gap-4"><span class="material-symbols-outlined text-atelier-gold text-xl">spa</span><span><strong class="font-semibold">Tragekomfort den ganzen Tag</strong> – leichte, dehnbare Qualitäten, die sich bewegen wie Sie.</span></li>
+          <li class="flex gap-4"><span class="material-symbols-outlined text-atelier-gold text-xl">palette</span><span><strong class="font-semibold">Hunderte Dessins</strong> – von zeitlosem Navy bis zur feinen Nadelstreife. Sie fühlen, Sie wählen.</span></li>
+        </ul>
+        <a href="#konfigurator" class="inline-flex items-center gap-3 group label-caps text-sartorial-navy">
+          Meinen Stoff finden
+          <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">east</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Konfigurator / Funnel ===== -->
+<section id="konfigurator" class="py-section bg-surface-container-low">
+  <div class="max-w-container mx-auto px-5 md:px-16">
+    <div class="text-center mb-16 reveal">
+      <span class="label-caps text-atelier-gold mb-4 block">Ihr Massanzug-Konfigurator</span>
+      <h2 class="font-display text-4xl md:text-[44px] mb-4">Gestalten Sie Ihren Anzug</h2>
+      <div class="w-24 h-px bg-atelier-gold mx-auto mb-5"></div>
+      <p class="text-on-surface-variant max-w-lg mx-auto">Kostenlos &amp; unverbindlich. Am Ende erhalten Sie Ihr persönliches Beratungsangebot.</p>
+    </div>
+
+    <div id="wizard" class="max-w-3xl mx-auto bg-silk-white border border-charcoal-wool/10 p-7 md:p-12">
+      <div id="wizardProgress" class="mb-9">
+        <div class="h-[3px] bg-surface-container-low overflow-hidden">
+          <span id="progressBar" class="block h-full w-[16%] bg-atelier-gold transition-all duration-500"></span>
+        </div>
+        <div class="text-right text-xs text-on-surface-variant mt-3 label-caps">Schritt <span id="stepNow">1</span> / <span id="stepTotal">6</span></div>
+      </div>
+
+      <form id="funnelForm" novalidate>
+        <!-- 1 Anlass -->
+        <fieldset class="qstep is-active" data-step="1">
+          <legend class="font-display text-2xl md:text-3xl mb-7">Wofür brauchen Sie Ihren Anzug?</legend>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="anlass" data-required="true">
+            <label class="opt"><input type="radio" name="anlass" value="Hochzeit"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">diamond</span>Hochzeit</span></label>
+            <label class="opt"><input type="radio" name="anlass" value="Business"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">work</span>Business &amp; Beruf</span></label>
+            <label class="opt"><input type="radio" name="anlass" value="Gala / Event"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">celebration</span>Gala / Event</span></label>
+            <label class="opt"><input type="radio" name="anlass" value="Ganz allgemein"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">auto_awesome</span>Einfach gut angezogen</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 2 Stil -->
+        <fieldset class="qstep" data-step="2">
+          <legend class="font-display text-2xl md:text-3xl mb-7">Welcher Stil entspricht Ihnen?</legend>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="stil" data-required="true">
+            <label class="opt"><input type="radio" name="stil" value="Klassisch"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">styler</span>Klassisch &amp; zeitlos</span></label>
+            <label class="opt"><input type="radio" name="stil" value="Modern / Slim"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">straighten</span>Modern &amp; schmal</span></label>
+            <label class="opt"><input type="radio" name="stil" value="Italienisch"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">light_mode</span>Italienisch elegant</span></label>
+            <label class="opt"><input type="radio" name="stil" value="Noch unsicher"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">forum</span>Beraten Sie mich</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 3 Farbe -->
+        <fieldset class="qstep" data-step="3">
+          <legend class="font-display text-2xl md:text-3xl mb-7">Welche Farbrichtung schwebt Ihnen vor?</legend>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="farbe" data-required="true">
+            <label class="opt"><input type="radio" name="farbe" value="Navy / Blau"/><span class="optbox"><span class="swatch" style="background:#1f2a44"></span>Navy / Blau</span></label>
+            <label class="opt"><input type="radio" name="farbe" value="Anthrazit / Grau"/><span class="optbox"><span class="swatch" style="background:#3a3d42"></span>Anthrazit / Grau</span></label>
+            <label class="opt"><input type="radio" name="farbe" value="Schwarz"/><span class="optbox"><span class="swatch" style="background:#111"></span>Schwarz</span></label>
+            <label class="opt"><input type="radio" name="farbe" value="Braun / Beige"/><span class="optbox"><span class="swatch" style="background:#8a6d4b"></span>Braun / Beige</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 4 Zeitrahmen -->
+        <fieldset class="qstep" data-step="4">
+          <legend class="font-display text-2xl md:text-3xl mb-7">Bis wann benötigen Sie den Anzug?</legend>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="zeitrahmen" data-required="true">
+            <label class="opt"><input type="radio" name="zeitrahmen" value="So bald wie möglich"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">bolt</span>So bald wie möglich</span></label>
+            <label class="opt"><input type="radio" name="zeitrahmen" value="In 1–3 Monaten"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">event</span>In 1–3 Monaten</span></label>
+            <label class="opt"><input type="radio" name="zeitrahmen" value="In 3–6 Monaten"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">calendar_month</span>In 3–6 Monaten</span></label>
+            <label class="opt"><input type="radio" name="zeitrahmen" value="Noch flexibel"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">handshake</span>Noch flexibel</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 5 Budget -->
+        <fieldset class="qstep" data-step="5">
+          <legend class="font-display text-2xl md:text-3xl mb-2">In welchem Rahmen darf sich Ihr Anzug bewegen?</legend>
+          <p class="text-sm text-on-surface-variant mb-7">Unverbindlich – hilft uns nur, Sie bestmöglich zu beraten.</p>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="budget" data-required="true">
+            <label class="opt"><input type="radio" name="budget" value="Einstieg"/><span class="optbox"><span class="text-atelier-gold">•</span>Solider Einstieg</span></label>
+            <label class="opt"><input type="radio" name="budget" value="Gehoben"/><span class="optbox"><span class="text-atelier-gold">••</span>Gehobene Qualität</span></label>
+            <label class="opt"><input type="radio" name="budget" value="Premium"/><span class="optbox"><span class="text-atelier-gold">•••</span>Premium, keine Kompromisse</span></label>
+            <label class="opt"><input type="radio" name="budget" value="Beraten Sie mich"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">forum</span>Beraten Sie mich</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 6 Kontakt -->
+        <fieldset class="qstep qstep--contact" data-step="6">
+          <legend class="font-display text-2xl md:text-3xl mb-2">Geschafft – wohin dürfen wir Ihr Angebot senden?</legend>
+          <p class="text-sm text-on-surface-variant mb-6">Wir melden uns persönlich für Ihre kostenlose Erstberatung. Keine Verpflichtung.</p>
+          <div id="summary" class="flex flex-wrap gap-x-5 gap-y-2 text-sm bg-surface-container-low p-4 mb-7" aria-live="polite"></div>
+          <div class="fld mb-6"><label for="name">Name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname"/></div>
+          <div class="grid sm:grid-cols-2 gap-6 mb-6">
+            <div class="fld"><label for="email">E-Mail *</label><input type="email" id="email" name="email" autocomplete="email" required placeholder="name@beispiel.ch"/></div>
+            <div class="fld"><label for="tel">Telefon *</label><input type="tel" id="tel" name="tel" autocomplete="tel" required placeholder="+41 ..."/></div>
+          </div>
+          <div class="fld mb-6"><label for="kontaktart">Wie erreichen wir Sie am liebsten?</label>
+            <select id="kontaktart" name="kontaktart"><option>Telefon</option><option>E-Mail</option><option>WhatsApp</option></select>
+          </div>
+          <div class="fld mb-6"><label for="nachricht">Ihre Nachricht (optional)</label><textarea id="nachricht" name="nachricht" rows="2" placeholder="Besondere Wünsche, Anlassdatum, Fragen ..."></textarea></div>
+          <label class="flex gap-3 items-start text-sm text-on-surface-variant cursor-pointer">
+            <input type="checkbox" id="datenschutz" name="datenschutz" required class="mt-1 accent-atelier-gold w-4 h-4 flex-shrink-0"/>
+            <span>Ich bin mit der Kontaktaufnahme einverstanden und akzeptiere die Datenschutzbestimmungen. *</span>
+          </label>
+        </fieldset>
+
+        <div class="flex items-center justify-between gap-3 mt-9">
+          <button type="button" id="btnBack" class="border border-charcoal-wool/30 px-7 py-3.5 label-caps hover:border-atelier-gold transition-colors" hidden>Zurück</button>
+          <button type="button" id="btnNext" class="ml-auto bg-sartorial-navy text-silk-white px-9 py-3.5 label-caps hover:bg-atelier-gold transition-colors active:scale-95">Weiter</button>
+          <button type="submit" id="btnSubmit" class="ml-auto bg-atelier-gold text-sartorial-navy px-9 py-3.5 label-caps hover:bg-sartorial-navy hover:text-silk-white transition-colors active:scale-95" hidden>Kostenloses Angebot anfordern</button>
+        </div>
+        <p id="wizardErr" class="text-heritage-red text-sm mt-4 text-right" hidden>Bitte treffen Sie eine Auswahl, um fortzufahren.</p>
+      </form>
+
+      <div id="success" class="text-center py-6" hidden>
+        <div class="w-16 h-16 bg-atelier-gold text-silk-white flex items-center justify-center mx-auto mb-6"><span class="material-symbols-outlined text-3xl">check</span></div>
+        <h3 class="font-display text-3xl mb-4">Vielen Dank, <span id="successName"></span>!</h3>
+        <p class="text-on-surface-variant max-w-md mx-auto mb-3">Ihre Anfrage ist eingegangen. Wir melden uns innerhalb von <strong class="text-sartorial-navy">24 Stunden</strong> persönlich, um Ihre kostenlose Erstberatung zu vereinbaren.</p>
+        <p class="font-semibold mt-6 mb-4">Möchten Sie nicht warten?</p>
+        <a href="tel:+41719112511" class="inline-flex bg-sartorial-navy text-silk-white px-9 py-4 label-caps hover:bg-atelier-gold transition-colors">Jetzt direkt anrufen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stimmen ===== -->
+<section id="stimmen" class="py-section bg-silk-white">
+  <div class="max-w-container mx-auto px-5 md:px-16">
+    <div class="text-center mb-14 reveal">
+      <span class="label-caps text-atelier-gold mb-4 block">Kundenstimmen</span>
+      <h2 class="font-display text-4xl md:text-[44px] mb-6">Von Kunden, die es genau wissen.</h2>
+      <a href="https://www.google.com/search?q=giorgio+schneideratelier+in+wil" target="_blank" rel="noopener" class="inline-flex items-center gap-3 border border-charcoal-wool/15 px-5 py-2.5 hover:border-atelier-gold transition-colors">
+        <span class="font-bold text-lg" style="font-family:Arial">G</span>
+        <span class="text-atelier-gold tracking-[2px]">★★★★★</span>
+        <span class="text-sm"><strong>5,0</strong> aus 364 Google-Rezensionen</span>
+      </a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <blockquote class="border border-charcoal-wool/10 p-9 reveal">
+        <div class="text-atelier-gold tracking-[2px] mb-4">★★★★★</div>
+        <p class="font-display text-xl leading-snug mb-5">„Bei der Auswahl der Farbe und der Passform wurde mir extrem geholfen. Ich hatte meinen massgeschneiderten Anzug in weniger als einem Monat – und bin äusserst zufrieden. Der Stoff hat eine vorzügliche Qualität.“</p>
+        <cite class="text-sm text-on-surface-variant not-italic">— Jeremia F. · Google-Rezension</cite>
+      </blockquote>
+      <blockquote class="border border-charcoal-wool/10 p-9 reveal" style="--d:.1s">
+        <div class="text-atelier-gold tracking-[2px] mb-4">★★★★★</div>
+        <p class="font-display text-xl leading-snug mb-5">„Ein exzellentes Schneideratelier mit höchstem Qualitätsanspruch. Die Stoffe sind aussergewöhnlich hochwertig, die Verarbeitung auf höchstem Niveau. Ob massgeschneiderter Smoking oder Hemd – alles sitzt perfekt.“</p>
+        <cite class="text-sm text-on-surface-variant not-italic">— Osman I. · Google-Rezension</cite>
+      </blockquote>
+      <blockquote class="border border-charcoal-wool/10 p-9 reveal" style="--d:.2s">
+        <div class="text-atelier-gold tracking-[2px] mb-4">★★★★★</div>
+        <p class="font-display text-xl leading-snug mb-5">„Die Beratung ist top: ehrlich, kompetent und nie aufdringlich. Die Anzüge im Showroom sehen richtig stark aus – stilvoll, hochwertig und modern. Da bekommt man direkt Lust, einen anzuprobieren.“</p>
+        <cite class="text-sm text-on-surface-variant not-italic">— Laurent L. · Google-Rezension</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Finale CTA ===== -->
+<section class="py-section bg-silk-white">
+  <div class="max-w-[1000px] mx-auto px-5">
+    <div class="border-[16px] border-surface-container-low p-10 md:p-20 text-center">
+      <span class="label-caps text-on-surface-variant tracking-[0.3em] mb-4 block">Ihr nächster Schritt</span>
+      <h2 class="font-display text-4xl md:text-[56px] leading-none mb-7">Bereit für einen Anzug,<br/>der nur Ihnen gehört?</h2>
+      <p class="text-on-surface-variant mb-10 max-w-md mx-auto">Starten Sie jetzt – kostenlos, unverbindlich und in unter einer Minute.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="#konfigurator" class="bg-sartorial-navy text-silk-white px-10 py-4 label-caps hover:bg-atelier-gold transition-colors active:scale-95">Massanzug konfigurieren</a>
+        <a href="tel:+41719112511" class="border border-charcoal-wool/30 px-10 py-4 label-caps hover:border-atelier-gold hover:text-atelier-gold transition-colors">+41 71 911 25 11</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="bg-sartorial-navy text-silk-white w-full pt-20 pb-10">
+  <div class="max-w-container mx-auto px-5 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <a class="font-display text-3xl text-atelier-gold mb-2 inline-block" href="#top">Schneideratelier Giorgio</a>
+      <p class="label-caps text-silk-white/40 mb-6">Massgeschneiderte Eleganz · Wil</p>
+      <p class="max-w-sm text-silk-white/60 mb-8 font-light">Vom ersten Mass bis zur letzten Naht – Massanzüge, die so individuell sind wie Ihr persönlicher Stil.</p>
+      <div class="flex gap-8">
+        <a class="text-silk-white/60 hover:text-atelier-gold transition-colors label-caps" href="https://www.instagram.com/schneideratelier_giorgio" target="_blank" rel="noopener">Instagram</a>
+        <a class="text-silk-white/60 hover:text-atelier-gold transition-colors label-caps" href="https://www.facebook.com/SchneideratelierGiorgio9500" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-8">
+      <div class="flex flex-col gap-3">
+        <span class="label-caps text-atelier-gold mb-1">Kontakt</span>
+        <a class="text-silk-white/60 hover:text-silk-white transition-colors" href="tel:+41719112511">+41 71 911 25 11</a>
+        <a class="text-silk-white/60 hover:text-silk-white transition-colors break-all" href="mailto:info@schneideratelier-giorgio.ch">info@schneideratelier-giorgio.ch</a>
+        <p class="text-silk-white/60">Zürcherstr. 2<br/>9500 Wil</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <span class="label-caps text-atelier-gold mb-1">Öffnungszeiten</span>
+        <p class="text-silk-white/60">Mo&nbsp;&nbsp;geschlossen</p>
+        <p class="text-silk-white/60">Di–Fr&nbsp;&nbsp;09:00–12:00<br/>13:00–18:30</p>
+        <p class="text-silk-white/60">Sa&nbsp;&nbsp;09:00–17:00</p>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-container mx-auto px-5 md:px-16 mt-16 pt-8 border-t border-silk-white/10 flex flex-col md:flex-row justify-between gap-3">
+    <span class="text-silk-white/40 text-sm">© <span id="year"></span> Schneideratelier Giorgio</span>
+    <span class="text-silk-white/40 text-sm">Massanzüge · Änderungen · Herrenmode · Reinigung</span>
+  </div>
+</footer>
+
+<a href="#konfigurator" class="md:hidden fixed left-4 right-4 bottom-4 z-50 bg-atelier-gold text-sartorial-navy text-center py-4 label-caps shadow-2xl">Massanzug konfigurieren</a>
+
+<script src="app.js"></script>
+</body>
+</html>
