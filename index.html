@@ -287,8 +287,19 @@
           </div>
         </fieldset>
 
-        <!-- 6 Kontakt -->
-        <fieldset class="qstep qstep--contact" data-step="6">
+        <!-- 6 Wunschtermin -->
+        <fieldset class="qstep" data-step="6">
+          <legend class="font-display text-2xl md:text-3xl mb-2">Wann passt Ihnen ein Beratungstermin?</legend>
+          <p class="text-sm text-on-surface-variant mb-7">Unsere festen Beratungstermine – Ihren Wunsch bestätigen wir persönlich.</p>
+          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="termin" data-required="true">
+            <label class="opt"><input type="radio" name="termin" value="Dienstag, 18:00 Uhr"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">event</span>Dienstag · 18:00 Uhr</span></label>
+            <label class="opt"><input type="radio" name="termin" value="Samstag, 10:00 Uhr"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">event</span>Samstag · 10:00 Uhr</span></label>
+            <label class="opt"><input type="radio" name="termin" value="Bin flexibel / anderer Wunsch"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">handshake</span>Bin flexibel / anderer Wunsch</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 7 Kontakt -->
+        <fieldset class="qstep qstep--contact" data-step="7">
           <legend class="font-display text-2xl md:text-3xl mb-2">Geschafft – wohin dürfen wir Ihr Angebot senden?</legend>
           <p class="text-sm text-on-surface-variant mb-6">Wir melden uns persönlich für Ihre kostenlose Erstberatung. Keine Verpflichtung.</p>
           <div id="summary" class="flex flex-wrap gap-x-5 gap-y-2 text-sm bg-surface-container-low p-4 mb-7" aria-live="polite"></div>

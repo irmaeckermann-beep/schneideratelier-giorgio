@@ -72,7 +72,7 @@
 
   var LABELS = {
     anlass: "Anlass", stil: "Stil", farbe: "Farbe",
-    zeitrahmen: "Zeitrahmen", budget: "Budget"
+    zeitrahmen: "Zeitrahmen", budget: "Budget", termin: "Wunschtermin"
   };
 
   function showStep(n) {
@@ -180,7 +180,7 @@
 
   function buildMailto(data) {
     var lines = [];
-    ["anlass", "stil", "farbe", "zeitrahmen", "budget"].forEach(function (k) {
+    ["anlass", "stil", "farbe", "zeitrahmen", "budget", "termin"].forEach(function (k) {
       if (data.get(k)) lines.push((LABELS[k] || k) + ": " + data.get(k));
     });
     lines.push("");
