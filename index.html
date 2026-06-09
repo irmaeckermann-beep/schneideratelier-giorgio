@@ -57,6 +57,7 @@
   .fld input, .fld select, .fld textarea { width: 100%; border: 0; border-bottom: 1px solid #262626; background: transparent; padding: 10px 2px; font-family: inherit; font-size: 16px; color: #0A192F; transition: border-color .2s; }
   .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-bottom-color: #C5A059; }
   .fld input.invalid, .fld textarea.invalid { border-bottom-color: #B00F41; }
+  #farbeCustom.invalid { border-color: #B00F41; }
   .mailto-link { display:block; margin-top:18px; font-size:.85rem; color:#44474d; text-decoration:underline; }
 </style>
 </head>
@@ -261,7 +262,10 @@
             <label class="opt"><input type="radio" name="farbe" value="Anthrazit / Grau"/><span class="optbox"><span class="swatch" style="background:#3a3d42"></span>Anthrazit / Grau</span></label>
             <label class="opt"><input type="radio" name="farbe" value="Schwarz"/><span class="optbox"><span class="swatch" style="background:#111"></span>Schwarz</span></label>
             <label class="opt"><input type="radio" name="farbe" value="Braun / Beige"/><span class="optbox"><span class="swatch" style="background:#8a6d4b"></span>Braun / Beige</span></label>
+            <label class="opt sm:col-span-2"><input type="radio" name="farbe" value="Unsicher – bitte beraten"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">forum</span>Ich bin unsicher – beraten Sie mich</span></label>
+            <label class="opt sm:col-span-2"><input type="radio" name="farbe" value="__custom__"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">edit</span>Eigene Farbidee selbst eingeben …</span></label>
           </div>
+          <input type="text" id="farbeCustom" name="farbe_custom" placeholder="Ihre Wunschfarbe / Idee – z. B. Dunkelgrün, Hellgrau-meliert, Bordeaux …" class="mt-4 w-full border-b border-charcoal-wool/40 bg-transparent py-2 text-base focus:outline-none focus:border-atelier-gold" hidden />
         </fieldset>
 
         <!-- 4 Zeitrahmen -->

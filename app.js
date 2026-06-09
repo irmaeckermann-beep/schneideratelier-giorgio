@@ -75,6 +75,29 @@
     zeitrahmen: "Zeitrahmen", budget: "Budget", termin: "Wunschtermin"
   };
 
+  /* ---- Eigene Farbidee ---- */
+  var farbeCustom = document.getElementById("farbeCustom");
+  function toggleFarbeCustom() {
+    var sel = form.querySelector('input[name="farbe"]:checked');
+    var isCustom = sel && sel.value === "__custom__";
+    if (farbeCustom) {
+      farbeCustom.hidden = !isCustom;
+      if (isCustom) setTimeout(function () { farbeCustom.focus(); }, 60);
+    }
+  }
+  function resolveFarbe(data) {
+    var v = data.get("farbe");
+    if (v === "__custom__") {
+      var t = farbeCustom && farbeCustom.value.trim();
+      return t ? "Eigene Idee: " + t : "Eigene Idee (offen)";
+    }
+    return v;
+  }
+  if (farbeCustom) farbeCustom.addEventListener("input", function () {
+    this.classList.remove("invalid");
+    if (errEl) errEl.hidden = true;
+  });
+
   function showStep(n) {
     steps.forEach(function (s) {
       s.classList.toggle("is-active", Number(s.dataset.step) === n);
@@ -101,6 +124,12 @@
       var name = groups[i].dataset.name;
       if (!form.querySelector('input[name="' + name + '"]:checked')) return false;
     }
+    // "Eigene Farbidee" gewählt -> Text erforderlich
+    var farbeSel = step.querySelector('input[name="farbe"]:checked');
+    if (farbeSel && farbeSel.value === "__custom__" && (!farbeCustom || farbeCustom.value.trim() === "")) {
+      if (farbeCustom) farbeCustom.classList.add("invalid");
+      return false;
+    }
     if (step.classList.contains("qstep--contact")) {
       var requiredFields = step.querySelectorAll("input[required]");
       var ok = true;
@@ -119,7 +148,7 @@
     var data = new FormData(form);
     var html = "";
     Object.keys(LABELS).forEach(function (key) {
-      var val = data.get(key);
+      var val = key === "farbe" ? resolveFarbe(data) : data.get(key);
       if (val) html += '<span class="inline-flex gap-1.5"><b class="text-atelier-gold font-semibold">' + LABELS[key] + ':</b> ' + escapeHtml(val) + '</span>';
     });
     summaryEl.innerHTML = html || "";
@@ -132,9 +161,12 @@
   }
 
   form.addEventListener("change", function (e) {
+    if (e.target.name === "farbe") toggleFarbeCustom();
     if (e.target.type === "radio" && current < total) {
       if (errEl) errEl.hidden = true;
-      setTimeout(function () { showStep(current + 1); }, 240);
+      // Bei "Eigene Farbidee" nicht automatisch weiter – erst tippen lassen
+      var pause = e.target.name === "farbe" && e.target.value === "__custom__";
+      if (!pause) setTimeout(function () { showStep(current + 1); }, 240);
     }
     if (e.target.classList && e.target.classList.contains("invalid")) {
       e.target.classList.remove("invalid");
@@ -181,7 +213,8 @@
   function buildMailto(data) {
     var lines = [];
     ["anlass", "stil", "farbe", "zeitrahmen", "budget", "termin"].forEach(function (k) {
-      if (data.get(k)) lines.push((LABELS[k] || k) + ": " + data.get(k));
+      var v = k === "farbe" ? resolveFarbe(data) : data.get(k);
+      if (v) lines.push((LABELS[k] || k) + ": " + v);
     });
     lines.push("");
     lines.push("Name: " + (data.get("name") || ""));
