@@ -5,13 +5,17 @@
   "use strict";
 
   /* ============================================================
-     LEAD-VERSAND: Hier Ihre Formspree-ID eintragen, dann landen
-     alle Anfragen automatisch in Ihrem Postfach.
-     1) Konto auf https://formspree.io (kostenlos), Formular anlegen
-     2) Sie erhalten eine ID wie "xayzabcd" -> unten eintragen
-     Solange leer, wird die Anfrage als E-Mail-Entwurf vorbereitet.
+     LEAD-VERSAND via Web3Forms (kostenlos) – inkl. automatischer
+     BESTÄTIGUNGS-E-MAIL AN DEN KUNDEN.
+     Einrichtung (ca. 5 Min.):
+     1) Auf https://web3forms.com Ihre E-Mail eingeben -> Sie erhalten
+        per Mail einen "Access Key" (kein Login nötig).
+     2) Key unten bei WEB3FORMS_KEY eintragen.
+     3) Im Web3Forms-Dashboard "Auto Response (Email)" aktivieren und
+        die Bestätigungs-Nachricht an den Kunden hinterlegen.
+     Solange leer: Anfrage wird als E-Mail-Entwurf vorbereitet (mailto).
      ============================================================ */
-  var FORMSPREE_ID = "";
+  var WEB3FORMS_KEY = "";
 
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -197,16 +201,21 @@
     if (progress) progress.style.display = "none";
     var success = document.getElementById("success");
     if (success) { success.hidden = false; success.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    if (WEB3FORMS_KEY) { var sm = document.getElementById("successMail"); if (sm) sm.hidden = false; }
 
     buildMailto(data);
 
-    // Echter Versand an Ihr Postfach, sobald FORMSPREE_ID gesetzt ist
-    if (FORMSPREE_ID) {
-      fetch("https://formspree.io/f/" + FORMSPREE_ID, {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: data
-      }).catch(function () {});
+    // Echter Versand an Ihr Postfach + Bestätigungsmail an den Kunden,
+    // sobald WEB3FORMS_KEY gesetzt ist
+    if (WEB3FORMS_KEY) {
+      var payload = new FormData(form);
+      payload.set("farbe", resolveFarbe(data));   // eigene Farbidee einsetzen
+      payload.delete("farbe_custom");
+      payload.append("access_key", WEB3FORMS_KEY);
+      payload.append("from_name", "Schneideratelier Giorgio – Website");
+      payload.append("subject", "Neue Massanzug-Anfrage – " + (nameVal || "Website"));
+      fetch("https://api.web3forms.com/submit", { method: "POST", body: payload })
+        .catch(function () {});
     }
   });
 

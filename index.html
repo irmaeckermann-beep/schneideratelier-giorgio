@@ -318,14 +318,14 @@
           <div class="fld mb-6"><label for="nachricht">Ihre Nachricht (optional)</label><textarea id="nachricht" name="nachricht" rows="2" placeholder="Besondere Wünsche, Anlassdatum, Fragen ..."></textarea></div>
           <label class="flex gap-3 items-start text-sm text-on-surface-variant cursor-pointer">
             <input type="checkbox" id="datenschutz" name="datenschutz" required class="mt-1 accent-atelier-gold w-4 h-4 flex-shrink-0"/>
-            <span>Ich bin mit der Kontaktaufnahme einverstanden und akzeptiere die Datenschutzbestimmungen. *</span>
+            <span>Ich bin mit der Kontaktaufnahme einverstanden und akzeptiere die <a href="datenschutz.html" target="_blank" class="text-atelier-gold underline hover:no-underline">Datenschutzerklärung</a> und <a href="agb.html" target="_blank" class="text-atelier-gold underline hover:no-underline">AGB</a>. *</span>
           </label>
         </fieldset>
 
         <div class="flex items-center justify-between gap-3 mt-9">
           <button type="button" id="btnBack" class="border border-charcoal-wool/30 px-7 py-3.5 label-caps hover:border-atelier-gold transition-colors" hidden>Zurück</button>
           <button type="button" id="btnNext" class="ml-auto bg-sartorial-navy text-silk-white px-9 py-3.5 label-caps hover:bg-atelier-gold transition-colors active:scale-95">Weiter</button>
-          <button type="submit" id="btnSubmit" class="ml-auto bg-atelier-gold text-sartorial-navy px-9 py-3.5 label-caps hover:bg-sartorial-navy hover:text-silk-white transition-colors active:scale-95" hidden>Kostenloses Angebot anfordern</button>
+          <button type="submit" id="btnSubmit" class="ml-auto bg-atelier-gold text-sartorial-navy px-9 py-3.5 label-caps hover:bg-sartorial-navy hover:text-silk-white transition-colors active:scale-95" hidden>Beratungstermin anfragen</button>
         </div>
         <p id="wizardErr" class="text-heritage-red text-sm mt-4 text-right" hidden>Bitte treffen Sie eine Auswahl, um fortzufahren.</p>
       </form>
@@ -334,6 +334,7 @@
         <div class="w-16 h-16 bg-atelier-gold text-silk-white flex items-center justify-center mx-auto mb-6"><span class="material-symbols-outlined text-3xl">check</span></div>
         <h3 class="font-display text-3xl mb-4">Vielen Dank, <span id="successName"></span>!</h3>
         <p class="text-on-surface-variant max-w-md mx-auto mb-3">Ihre Anfrage ist eingegangen. Wir melden uns innerhalb von <strong class="text-sartorial-navy">24 Stunden</strong> persönlich, um Ihre kostenlose Erstberatung zu vereinbaren.</p>
+        <p id="successMail" class="text-on-surface-variant max-w-md mx-auto mb-3" hidden>📧 Eine Bestätigung haben wir an Ihre E-Mail-Adresse gesendet.</p>
         <p class="font-semibold mt-6 mb-4">Möchten Sie nicht warten?</p>
         <a href="tel:+41719112511" class="inline-flex bg-sartorial-navy text-silk-white px-9 py-4 label-caps hover:bg-atelier-gold transition-colors">Jetzt direkt anrufen</a>
       </div>
@@ -417,9 +418,13 @@
       </div>
     </div>
   </div>
-  <div class="max-w-container mx-auto px-5 md:px-16 mt-16 pt-8 border-t border-silk-white/10 flex flex-col md:flex-row justify-between gap-3">
+  <div class="max-w-container mx-auto px-5 md:px-16 mt-16 pt-8 border-t border-silk-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
     <span class="text-silk-white/40 text-sm">© <span id="year"></span> Schneideratelier Giorgio</span>
-    <span class="text-silk-white/40 text-sm">Massanzüge · Änderungen · Herrenmode · Reinigung</span>
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+      <a href="agb.html" class="text-silk-white/60 hover:text-atelier-gold transition-colors">AGB</a>
+      <a href="datenschutz.html" class="text-silk-white/60 hover:text-atelier-gold transition-colors">Datenschutz</a>
+      <span class="text-silk-white/40">Massanzüge · Änderungen · Herrenmode · Reinigung</span>
+    </div>
   </div>
 </footer>
 
