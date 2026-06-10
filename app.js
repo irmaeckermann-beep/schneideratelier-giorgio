@@ -244,4 +244,15 @@
   }
 
   showStep(1);
+
+  // Hero-Direktstart: erste Frage im Hero -> Funnel springt zu Schritt 2
+  Array.prototype.slice.call(document.querySelectorAll(".hero-start")).forEach(function (b) {
+    b.addEventListener("click", function () {
+      var val = b.getAttribute("data-anlass");
+      var radio = form.querySelector('input[name="anlass"][value="' + val + '"]');
+      if (radio) { radio.checked = true; radio.dispatchEvent(new Event("change", { bubbles: true })); }
+      var k = document.getElementById("konfigurator");
+      if (k) k.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 })();
