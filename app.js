@@ -245,6 +245,20 @@
 
   showStep(1);
 
+  // Sticky-CTA (Handy) ausblenden, solange der Konfigurator sichtbar ist
+  (function () {
+    var sticky = document.getElementById("stickyCta");
+    var konf = document.getElementById("konfigurator");
+    if (!sticky || !konf) return;
+    function upd() {
+      var r = konf.getBoundingClientRect();
+      sticky.style.display = (r.top < window.innerHeight && r.bottom > 0) ? "none" : "";
+    }
+    window.addEventListener("scroll", upd, { passive: true });
+    window.addEventListener("resize", upd);
+    upd();
+  })();
+
   // Hero-Direktstart: erste Frage im Hero -> Funnel springt zu Schritt 2
   Array.prototype.slice.call(document.querySelectorAll(".hero-start")).forEach(function (b) {
     b.addEventListener("click", function () {
