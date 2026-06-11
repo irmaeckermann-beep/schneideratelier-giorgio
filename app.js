@@ -99,6 +99,13 @@
     if (errEl) errEl.hidden = true;
   });
 
+  /* ---- Wunschtermin (Tag + Uhrzeit) ---- */
+  function terminValue(data) {
+    var t = data.get("tag"), u = data.get("uhrzeit");
+    if (!t && !u) return "";
+    return (t || "") + (t && u ? ", " : "") + (u ? u + " Uhr" : "");
+  }
+
   function showStep(n) {
     steps.forEach(function (s) {
       s.classList.toggle("is-active", Number(s.dataset.step) === n);
@@ -131,17 +138,15 @@
       if (farbeCustom) farbeCustom.classList.add("invalid");
       return false;
     }
-    if (step.classList.contains("qstep--contact")) {
-      var requiredFields = step.querySelectorAll("input[required]");
-      var ok = true;
-      requiredFields.forEach(function (f) {
-        var valid = f.type === "checkbox" ? f.checked : f.value.trim() !== "" && f.checkValidity();
-        f.classList.toggle("invalid", !valid);
-        if (!valid) ok = false;
-      });
-      return ok;
-    }
-    return true;
+    // Pflichtfelder (Selects/Inputs/Textareas) in diesem Schritt prüfen
+    var requiredFields = step.querySelectorAll("[required]");
+    var ok = true;
+    requiredFields.forEach(function (f) {
+      var valid = f.type === "checkbox" ? f.checked : (f.value.trim() !== "" && f.checkValidity());
+      f.classList.toggle("invalid", !valid);
+      if (!valid) ok = false;
+    });
+    return ok;
   }
 
   function renderSummary() {
@@ -149,7 +154,7 @@
     var data = new FormData(form);
     var html = "";
     Object.keys(LABELS).forEach(function (key) {
-      var val = key === "farbe" ? resolveFarbe(data) : data.get(key);
+      var val = key === "farbe" ? resolveFarbe(data) : (key === "termin" ? terminValue(data) : data.get(key));
       if (val) html += '<span class="inline-flex gap-1.5"><b class="text-atelier-gold font-semibold">' + LABELS[key] + ':</b> ' + escapeHtml(val) + '</span>';
     });
     summaryEl.innerHTML = html || "";
@@ -208,7 +213,7 @@
       var lead = {
         anlass: data.get("anlass"), stil: data.get("stil"),
         farbe: resolveFarbe(data), zeitrahmen: data.get("zeitrahmen"),
-        budget: data.get("budget"), termin: data.get("termin"),
+        budget: data.get("budget"), termin: terminValue(data),
         name: data.get("name"), email: data.get("email"), tel: data.get("tel"),
         kontaktart: data.get("kontaktart"), nachricht: data.get("nachricht"),
       };
@@ -223,7 +228,7 @@
   function buildMailto(data) {
     var lines = [];
     ["anlass", "stil", "farbe", "zeitrahmen", "budget", "termin"].forEach(function (k) {
-      var v = k === "farbe" ? resolveFarbe(data) : data.get(k);
+      var v = k === "farbe" ? resolveFarbe(data) : (k === "termin" ? terminValue(data) : data.get(k));
       if (v) lines.push((LABELS[k] || k) + ": " + v);
     });
     lines.push("");

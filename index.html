@@ -64,7 +64,7 @@
   .fld label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #44474d; display: block; margin-bottom: 8px; }
   .fld input, .fld select, .fld textarea { width: 100%; border: 0; border-bottom: 1px solid #262626; background: transparent; padding: 10px 2px; font-family: inherit; font-size: 16px; color: #0A192F; transition: border-color .2s; }
   .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-bottom-color: #C5A059; }
-  .fld input.invalid, .fld textarea.invalid { border-bottom-color: #B00F41; }
+  .fld input.invalid, .fld textarea.invalid, .fld select.invalid { border-bottom-color: #B00F41; }
   #farbeCustom.invalid { border-color: #B00F41; }
   .mailto-link { display:block; margin-top:18px; font-size:.85rem; color:#44474d; text-decoration:underline; }
 </style>
@@ -313,12 +313,25 @@
         <!-- 6 Wunschtermin -->
         <fieldset class="qstep" data-step="6">
           <legend class="font-display text-2xl md:text-3xl mb-2">Wann passt Ihnen ein Beratungstermin?</legend>
-          <p class="text-sm text-on-surface-variant mb-7">Wir vergeben nur wenige Beratungstermine pro Woche. Ihren Wunsch bestätigen wir persönlich.</p>
-          <div class="options grid grid-cols-1 sm:grid-cols-2 gap-3.5" data-name="termin" data-required="true">
-            <label class="opt"><input type="radio" name="termin" value="Dienstag, 18:00 Uhr"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">event</span>Dienstag · 18:00 Uhr</span></label>
-            <label class="opt"><input type="radio" name="termin" value="Samstag, 10:00 Uhr"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">event</span>Samstag · 10:00 Uhr</span></label>
-            <label class="opt"><input type="radio" name="termin" value="Bin flexibel / anderer Wunsch"/><span class="optbox"><span class="material-symbols-outlined text-atelier-gold">handshake</span>Bin flexibel / anderer Wunsch</span></label>
+          <p class="text-sm text-on-surface-variant mb-7">Wählen Sie Ihren Wunschtag und Ihre Wunschzeit. Wir bestätigen den Termin persönlich.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="fld">
+              <label for="tag">Wunschtag</label>
+              <select id="tag" name="tag" required>
+                <option value="">Bitte wählen</option>
+                <option>Dienstag</option>
+                <option>Mittwoch</option>
+                <option>Donnerstag</option>
+                <option>Freitag</option>
+                <option>Samstag</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label for="uhrzeit">Wunschzeit</label>
+              <input type="time" id="uhrzeit" name="uhrzeit" required min="09:00" max="18:30" />
+            </div>
           </div>
+          <p class="text-xs text-on-surface-variant mt-4">Öffnungszeiten: Di bis Fr 09 bis 18:30 Uhr, Sa 09 bis 17 Uhr. Den genauen Termin stimmen wir mit Ihnen ab.</p>
         </fieldset>
 
         <!-- 7 Kontakt -->
