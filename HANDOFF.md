@@ -22,15 +22,17 @@ Hosting: GitHub Pages · Repo: `irmaeckermann-beep/schneideratelier-giorgio`
 
 ---
 
-## ⚠️ Noch zu erledigen: E-Mail-Versand aktivieren (ca. 5 Min.)
-Damit Anfragen **automatisch ins Postfach** kommen **und der Kunde eine
-Bestätigungs-Mail** erhält:
+## ⚠️ Noch zu erledigen: Brevo-Anbindung aktivieren (ca. 10 Min.)
+Leads landen dann **direkt in Brevo (CRM)**, der Inhaber bekommt eine **Lead-Mail**
+und der Kunde eine **Bestätigungs-Mail** – Newsletter/Automationen über Brevo möglich.
 
-1. Auf **https://web3forms.com** die E-Mail `info@schneideratelier-giorgio.ch`
-   eingeben → ein **Access Key** kommt per Mail (kein Login nötig).
-2. In `app.js` ganz oben eintragen: `var WEB3FORMS_KEY = "DEIN-KEY";`
-3. Im Web3Forms-Dashboard **„Auto Response“** aktivieren (Bestätigungstext an den Kunden).
-4. Änderung speichern und live stellen (siehe unten).
+Da der Brevo-API-Key geheim bleiben muss, läuft die Anbindung über einen kleinen,
+kostenlosen **Cloudflare-Worker** (Relay). Schritt für Schritt:
+**→ siehe [cloudflare-worker/README.md](cloudflare-worker/README.md)**
+
+Kurz: Brevo-API-Key + verifizierten Absender anlegen → Worker bei Cloudflare
+deployen (Code in `cloudflare-worker/worker.js`) → Variablen setzen → **Worker-URL**
+in `app.js` bei `BREVO_WORKER_URL` eintragen → live stellen.
 
 > Bis dahin zeigt das Formular eine Danke-Meldung und bietet einen E-Mail-Entwurf an –
 > es gehen aber noch keine automatischen Mails raus.

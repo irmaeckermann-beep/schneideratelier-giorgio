@@ -5,17 +5,14 @@
   "use strict";
 
   /* ============================================================
-     LEAD-VERSAND via Web3Forms (kostenlos) – inkl. automatischer
-     BESTÄTIGUNGS-E-MAIL AN DEN KUNDEN.
-     Einrichtung (ca. 5 Min.):
-     1) Auf https://web3forms.com Ihre E-Mail eingeben -> Sie erhalten
-        per Mail einen "Access Key" (kein Login nötig).
-     2) Key unten bei WEB3FORMS_KEY eintragen.
-     3) Im Web3Forms-Dashboard "Auto Response (Email)" aktivieren und
-        die Bestätigungs-Nachricht an den Kunden hinterlegen.
+     LEAD-VERSAND via Brevo (über den Cloudflare-Worker-Relay) –
+     legt den Kontakt in Brevo an, sendet Lead-Mail an den Inhaber
+     und Bestätigungs-Mail an den Kunden.
+     Einrichtung: siehe cloudflare-worker/README.md
+     -> Worker deployen und dessen URL hier eintragen.
      Solange leer: Anfrage wird als E-Mail-Entwurf vorbereitet (mailto).
      ============================================================ */
-  var WEB3FORMS_KEY = "";
+  var BREVO_WORKER_URL = "";
 
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -201,21 +198,25 @@
     if (progress) progress.style.display = "none";
     var success = document.getElementById("success");
     if (success) { success.hidden = false; success.scrollIntoView({ behavior: "smooth", block: "center" }); }
-    if (WEB3FORMS_KEY) { var sm = document.getElementById("successMail"); if (sm) sm.hidden = false; }
+    if (BREVO_WORKER_URL) { var sm = document.getElementById("successMail"); if (sm) sm.hidden = false; }
 
     buildMailto(data);
 
-    // Echter Versand an Ihr Postfach + Bestätigungsmail an den Kunden,
-    // sobald WEB3FORMS_KEY gesetzt ist
-    if (WEB3FORMS_KEY) {
-      var payload = new FormData(form);
-      payload.set("farbe", resolveFarbe(data));   // eigene Farbidee einsetzen
-      payload.delete("farbe_custom");
-      payload.append("access_key", WEB3FORMS_KEY);
-      payload.append("from_name", "Schneideratelier Giorgio – Website");
-      payload.append("subject", "Neue Massanzug-Anfrage – " + (nameVal || "Website"));
-      fetch("https://api.web3forms.com/submit", { method: "POST", body: payload })
-        .catch(function () {});
+    // Versand an Brevo (Kontakt + Lead-Mail + Bestätigung an den Kunden),
+    // sobald BREVO_WORKER_URL gesetzt ist
+    if (BREVO_WORKER_URL) {
+      var lead = {
+        anlass: data.get("anlass"), stil: data.get("stil"),
+        farbe: resolveFarbe(data), zeitrahmen: data.get("zeitrahmen"),
+        budget: data.get("budget"), termin: data.get("termin"),
+        name: data.get("name"), email: data.get("email"), tel: data.get("tel"),
+        kontaktart: data.get("kontaktart"), nachricht: data.get("nachricht"),
+      };
+      fetch(BREVO_WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead),
+      }).catch(function () {});
     }
   });
 
