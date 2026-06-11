@@ -167,10 +167,10 @@
   }
 
   form.addEventListener("change", function (e) {
+    if (errEl) errEl.hidden = true; // jede Eingabe blendet die Fehlermeldung aus
     if (e.target.name === "farbe") toggleFarbeCustom();
     if (e.target.type === "radio" && current < total) {
-      if (errEl) errEl.hidden = true;
-      // Bei "Eigene Farbidee" nicht automatisch weiter – erst tippen lassen
+      // Bei "Eigene Farbidee" nicht automatisch weiter, erst tippen lassen
       var pause = e.target.name === "farbe" && e.target.value === "__custom__";
       if (!pause) setTimeout(function () { showStep(current + 1); }, 240);
     }
