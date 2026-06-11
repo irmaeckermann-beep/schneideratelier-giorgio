@@ -232,7 +232,7 @@
     lines.push("Telefon: " + (data.get("tel") || ""));
     lines.push("Bevorzugter Kontakt: " + (data.get("kontaktart") || ""));
     if (data.get("nachricht")) lines.push("Nachricht: " + data.get("nachricht"));
-    var subject = "Neue Massanzug-Anfrage von " + (data.get("name") || "Website");
+    var subject = "Neue Massanzug Anfrage von " + (data.get("name") || "Website");
     var href = "mailto:info@schneideratelier-giorgio.ch?subject=" +
       encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
     var success = document.getElementById("success");

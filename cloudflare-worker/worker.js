@@ -68,7 +68,7 @@ export default {
       body: JSON.stringify({
         sender, to: [{ email: owner }],
         replyTo: email ? { email, name } : undefined,
-        subject: `Neue Massanzug-Anfrage – ${name || "Website"}`,
+        subject: `Neue Massanzug Anfrage von ${name || "Website"}`,
         htmlContent:
           `<h2 style="font-family:Georgia,serif">Neue Anfrage über die Website</h2>` +
           `<p>${summaryHtml}</p>` +
